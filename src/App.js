@@ -424,11 +424,11 @@ function TopBar({ page, onNavigate, lang, onToggleLang }) {
           </button>
           <a
             className="nav-link nav-link-icon"
-            href="https://x.com"
+            href="https://x.com/Abot_bsc"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
-            title="Twitter"
+            title="X: @Abot_bsc"
           >
             𝕏
           </a>
