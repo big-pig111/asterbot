@@ -981,6 +981,7 @@ body::before {
   .trading-content {
     flex-direction: column;
     gap: 40px;
+    padding-right: 0;
   }
 
   .progress-floating { justify-content: stretch; }
@@ -1010,4 +1011,19 @@ body::before {
   .social-links {
     justify-content: center;
   }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.8rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+  .hero-buttons { gap: 12px; }
+  .model-3d-container { width: 220px; height: 220px; }
+  .icon-outer-ring { width: 220px; height: 220px; }
+  .icon-middle-ring { width: 160px; height: 160px; }
+  .trading-title { font-size: 2rem; }
+  .trading-card, .progress-card { padding: 16px; }
+  .form-input { padding: 9px 12px; }
+  .stat-value { font-size: 2rem; }
+  .stat-label { font-size: 0.8rem; }
 }
