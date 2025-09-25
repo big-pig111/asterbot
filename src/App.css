@@ -1,0 +1,1002 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: 
+    /* 颗粒噪点层 */
+    radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 255, 255, 0.015) 21%, rgba(255, 255, 255, 0.015) 34%, transparent 35%, transparent),
+    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.01) 25%, rgba(255, 255, 255, 0.01) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.01) 75%, rgba(255, 255, 255, 0.01) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.01) 25%, rgba(255, 255, 255, 0.01) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.01) 75%, rgba(255, 255, 255, 0.01) 76%, transparent 77%, transparent),
+    /* 主渐变背景 */
+    radial-gradient(ellipse at center top, rgba(88, 66, 124, 0.8) 0%, rgba(45, 35, 66, 0.9) 40%, rgba(25, 20, 35, 1) 100%),
+    linear-gradient(135deg, #1a1625 0%, #2d2340 25%, #584276 50%, #3d2f5a 75%, #1a1625 100%);
+  background-size: 
+    200px 200px,
+    75px 100px,
+    100px 75px,
+    100% 100%,
+    100% 100%;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 额外的噪点纹理层 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.015) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+  background-size: 300px 300px, 200px 200px, 150px 150px;
+  pointer-events: none;
+  z-index: 1;
+  animation: grain 32s ease-in-out infinite;
+}
+
+/* 顶部导航 - 统一玻璃拟态 + 渐变边框，与整体风格一致 */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.topbar-inner {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.brand-accent { color: #D4AF37; }
+
+.nav-links { display: flex; gap: 12px; }
+
+.nav-link {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-link.active {
+  color: #000;
+  background: #D4AF37;
+  border-color: #D4AF37;
+}
+
+@keyframes grain {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+    opacity: 1;
+  }
+  10% { 
+    transform: translate(-5%, -10%) rotate(1deg); 
+    opacity: 0.9;
+  }
+  20% { 
+    transform: translate(-15%, 5%) rotate(-1deg); 
+    opacity: 0.95;
+  }
+  30% { 
+    transform: translate(7%, -25%) rotate(0deg); 
+    opacity: 0.9;
+  }
+  40% { 
+    transform: translate(-5%, 25%) rotate(2deg); 
+    opacity: 0.95;
+  }
+  50% { 
+    transform: translate(-15%, 10%) rotate(-2deg); 
+    opacity: 0.9;
+  }
+  60% { 
+    transform: translate(15%, 0%) rotate(1deg); 
+    opacity: 0.95;
+  }
+  70% { 
+    transform: translate(0%, 15%) rotate(-1deg); 
+    opacity: 0.9;
+  }
+  80% { 
+    transform: translate(3%, -10%) rotate(0deg); 
+    opacity: 0.95;
+  }
+  90% { 
+    transform: translate(-10%, 5%) rotate(1deg); 
+    opacity: 0.9;
+  }
+}
+
+/* Hero Container - Full screen with gradient background */
+.hero-container {
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 80px 0 80px; /* 顶栏占位 */
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Main Content Area */
+.hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: none;
+}
+
+/* Geometric Background */
+.geometric-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Geometric Lines */
+.geometric-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(138, 118, 255, 0.4), transparent);
+  animation: float 12s ease-in-out infinite;
+  border-radius: 1px;
+}
+
+.line-1 {
+  width: 300px;
+  height: 1px;
+  top: 15%;
+  right: 8%;
+  animation-delay: 0s;
+  transform: rotate(35deg);
+}
+
+.line-2 {
+  width: 200px;
+  height: 1px;
+  top: 25%;
+  right: 15%;
+  animation-delay: 2s;
+  transform: rotate(-25deg);
+}
+
+.line-3 {
+  width: 250px;
+  height: 1px;
+  top: 45%;
+  right: 5%;
+  animation-delay: 4s;
+  transform: rotate(60deg);
+}
+
+.line-4 {
+  width: 180px;
+  height: 1px;
+  top: 65%;
+  right: 20%;
+  animation-delay: 6s;
+  transform: rotate(-45deg);
+}
+
+.line-5 {
+  width: 150px;
+  height: 1px;
+  top: 80%;
+  right: 12%;
+  animation-delay: 8s;
+  transform: rotate(15deg);
+}
+
+.line-6 {
+  width: 220px;
+  height: 1px;
+  top: 35%;
+  right: 25%;
+  animation-delay: 10s;
+  transform: rotate(-60deg);
+}
+
+/* 3D Model Container */
+.model-3d-container {
+  position: absolute;
+  right: 12%;
+  top: 60%;
+  transform: translateY(-50%);
+  width: 450px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.model-3d-rings {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.model-3d-wrapper {
+  width: 120%;
+  height: 120%;
+  z-index: 5;
+}
+
+.icon-outer-ring {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border: 1px solid rgba(138, 118, 255, 0.15);
+  border-radius: 50%;
+  animation: rotate 25s linear infinite;
+}
+
+.icon-outer-ring::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background: rgba(138, 118, 255, 0.6);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.icon-middle-ring {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border: 1px solid rgba(138, 118, 255, 0.25);
+  border-radius: 50%;
+  animation: rotate 18s linear infinite reverse;
+}
+
+.icon-middle-ring::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 15px;
+  height: 2px;
+  background: rgba(138, 118, 255, 0.8);
+  border-radius: 1px;
+}
+
+/* 3D模型样式 - 移除了旧的2D图标样式 */
+
+/* Hero Text */
+.hero-text {
+  flex: 1;
+  max-width: 650px;
+  margin-bottom: 0;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.highlight-text {
+  color: #D4AF37;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 48px;
+  max-width: 580px;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+.launch-btn {
+  background: #D4AF37;
+  color: #000;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.launch-btn:hover {
+  background: #B8941F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.download-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 18px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.launch-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.qr-icon {
+  font-size: 1rem;
+}
+
+/* Hero Stats - Bottom Right */
+.hero-stats-bottom {
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+  display: flex;
+  gap: 80px;
+  z-index: 10;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 4rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(0px) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-30px) rotate(var(--rotation, 0deg));
+  }
+}
+
+/* Trading Page Styles */
+.trading-container {
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 80px 80px 0 80px; /* 顶栏占位 */
+  overflow: hidden;
+  z-index: 2;
+}
+
+.trading-content {
+  flex: 1;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding-right: 420px; /* 给右上角 FAQ 留出视觉空间 */
+  z-index: 10;
+}
+
+/* 中间浮动的执行进度卡片容器 */
+.progress-floating {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none; /* 只让内部卡片可交互 */
+}
+
+.progress-floating .progress-card {
+  width: 520px; /* 缩短宽度 */
+  pointer-events: auto;
+}
+
+.trading-left {
+  flex: 0 1 640px;
+}
+
+/* 删除原右侧列，全部在左侧布局 */
+
+/* 右下角 FAQ 浮层 */
+.faq-floating {
+  position: fixed;
+  right: 80px;
+  top: 64px;
+  width: 380px;
+  max-height: 45vh;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px 18px;
+  backdrop-filter: blur(8px);
+  /* 隐藏滚动条（仍可滚动） */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+.faq-floating::-webkit-scrollbar { /* Chrome/Safari */
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 1200px) {
+  .faq-floating { right: 24px; top: 72px; width: 340px; }
+}
+
+@media (max-width: 768px) {
+  .faq-floating {
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin-top: 8px;
+  }
+}
+
+/* Trading Left Content */
+.trading-title {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.trading-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #D4AF37;
+  font-weight: 500;
+}
+
+.connect-wallet-btn {
+  background: #D4AF37;
+  color: #000;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.connect-wallet-btn:hover {
+  background: #B8941F;
+  transform: translateY(-2px);
+}
+
+.info-section {
+  margin-bottom: 24px;
+}
+
+.info-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-bottom: 24px;
+}
+
+.faq-title {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #fff;
+}
+
+.faq-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  transition: transform 0.25s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0 0;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 0 0 12px 0;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(180deg);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  z-index: 11;
+}
+
+.social-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Trading Cards */
+.trading-card, .progress-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.card-title {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #D4AF37;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.start-trading-btn {
+  width: 100%;
+  background: #D4AF37;
+  color: #000;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+
+.start-trading-btn:hover {
+  background: #B8941F;
+  transform: translateY(-2px);
+}
+
+/* Progress Card */
+.progress-card {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  height: 8px;
+  width: 100%;
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #D4AF37, #B8941F);
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  border-radius: 8px;
+}
+
+.progress-text {
+  color: #D4AF37;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logs-container {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-top: 16px;
+  padding-right: 6px; /* 为滚动条预留空间，避免遮挡文字 */
+  scrollbar-width: thin; /* Firefox 可见细滚动条 */
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.logs-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.logs-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+}
+
+.logs-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.log-item {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .hero-container {
+    padding: 80px 40px 0 40px;
+  }
+  
+  .model-3d-container {
+    right: 8%;
+    width: 400px;
+    height: 400px;
+  }
+  
+  .icon-outer-ring {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .icon-middle-ring {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-container {
+    padding: 80px 20px 0 20px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .model-3d-container {
+    right: 5%;
+    width: 350px;
+    height: 350px;
+  }
+  
+  .icon-outer-ring {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .icon-middle-ring {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-links {
+    right: 16px;
+    bottom: 16px;
+  }
+  .hero-container {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .progress-floating {
+    justify-content: stretch;
+  }
+  .progress-floating .progress-card {
+    width: 100%;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+  
+  .hero-stats-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    gap: 40px;
+  }
+  
+  .stat-value {
+    font-size: 2.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  .model-3d-container {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 40px 0;
+    width: 280px;
+    height: 280px;
+  }
+  
+  .model-3d-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .icon-outer-ring {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .icon-middle-ring {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Trading Page Mobile */
+  .trading-container {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+  
+  .trading-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .trading-left {
+    max-width: 100%;
+  }
+  
+  .trading-right {
+    flex: 1;
+  }
+  
+  .trading-title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  
+  .trading-subtitle {
+    text-align: center;
+  }
+  
+  .faq-section {
+    margin-bottom: 30px;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
