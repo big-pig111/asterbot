@@ -894,6 +894,14 @@ body::before {
 }
 
 @media (max-width: 768px) {
+  .topbar-inner {
+    height: 56px;
+    padding: 0 12px;
+  }
+  .nav-links { gap: 8px; }
+  .nav-link { padding: 6px 10px; border-radius: 8px; font-size: 0.9rem; }
+  .nav-link-icon { width: 34px; height: 34px; font-size: 14px; }
+
   .social-links {
     right: 16px;
     bottom: 16px;
@@ -914,9 +922,9 @@ body::before {
     flex-direction: column;
   }
   
-  .hero-title {
-    font-size: 2.8rem;
-  }
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .launch-btn, .download-btn { padding: 14px 20px; }
   
   .hero-buttons {
     flex-direction: column;
@@ -974,6 +982,9 @@ body::before {
     flex-direction: column;
     gap: 40px;
   }
+
+  .progress-floating { justify-content: stretch; }
+  .progress-floating .progress-card { width: 100%; margin-top: 12px; }
   
   .trading-left {
     max-width: 100%;
