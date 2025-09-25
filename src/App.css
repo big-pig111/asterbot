@@ -910,6 +910,7 @@ body::before {
     flex-direction: column;
     padding: 40px 20px;
     text-align: center;
+    overflow: visible; /* 允许手机端滚动 */
   }
   .progress-floating {
     justify-content: stretch;
@@ -976,6 +977,7 @@ body::before {
   .trading-container {
     flex-direction: column;
     padding: 40px 20px;
+    overflow: visible; /* 允许手机端滚动 */
   }
   
   .trading-content {
@@ -986,6 +988,8 @@ body::before {
 
   .progress-floating { justify-content: stretch; }
   .progress-floating .progress-card { width: 100%; margin-top: 12px; }
+  .logs-container { -webkit-overflow-scrolling: touch; }
+  .faq-floating { -webkit-overflow-scrolling: touch; }
   
   .trading-left {
     max-width: 100%;
